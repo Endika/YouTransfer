@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-{% if not isXmlHtppRequest %}
+{% if not isXMLHttpRequest %}
 <div class="settings">
 	<div class="col-md-3">
 		<ul class="nav nav-tabs nav-stacked">
@@ -12,6 +12,9 @@
 		<ul class="nav nav-tabs nav-stacked nav-pills" role="tablist">
 			<li role="presentation" class="{{ "active" if activeTab == 'general' }}">
 				<a href="/settings/general" aria-controls="general" role="tab" data-async data-target="tab-content">General</a>
+			</li>
+			<li role="presentation" class="{{ "active" if activeTab == 'security' }}">
+				<a href="/settings/security" aria-controls="security" role="tab" data-async data-target="tab-content">Security</a>
 			</li>
 			<li role="presentation" class="{{ "active" if activeTab == 'transfer' }}">
 				<a href="/settings/transfer" aria-controls="transfer" role="tab" data-async data-target="tab-content">Transfer</a>
@@ -29,16 +32,16 @@
 	</div>
 
 	<div class="col-md-9">
-{% endif %}		
+{% endif %}
 		<div class="tab-content" id="tab-content">
 			{% block tabcontent %}
 			{% endblock %}
 		</div>
-{% if not isXmlHtppRequest %}
+{% if not isXMLHttpRequest %}
 	</div>
 	<div class="finalise col-md-3">
 		<a class="btn btn-default" href="/settings/finalise" role="tab" data-async data-target="tab-content">Finalise</a>
 	</div>
 </div>
-{% endif %}		
+{% endif %}
 {% endblock %}

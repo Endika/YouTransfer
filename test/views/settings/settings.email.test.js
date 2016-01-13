@@ -25,13 +25,13 @@ describe('Email Settings View', function() {
 	});
 
 	beforeEach(function *() {
-		yield browser.url(sandbox.baseUrl + '/settings/email');
+		yield browser.url(sandbox.general.baseUrl + '/settings/email');
 	});
 
 	it('should have the window title based on user settings', function *() {
 
 		var title = yield browser.getTitle()
-		title.should.be.equal(sandbox.title);
+		title.should.be.equal(sandbox.general.title);
 
 	});
 
@@ -63,10 +63,14 @@ describe('Email Settings View', function() {
 
 	});
 
-	it('should have a "Send Copy To Sender" checkbox', function *() {
+	it('should have a "Send copy to sender" checkbox with the current value based on user settings', function *() {
 
-		var value = yield browser.getValue('input#send-copy')
-		value.should.be.equal('true');
+		var value = yield browser.getAttribute('input#sendCopy', 'checked')
+		if(sandbox.email.sendCopy) {
+			should.exist(value);
+		} else {
+			should.not.exist(value);
+		}
 
 	});
 
